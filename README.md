@@ -47,6 +47,7 @@ Entity를 직접 노출할 때는 양방향 연관관계가 걸린 곳은 꼭 �
 항상 지연 로딩을 기본으로 하고, 성능 최적화가 필요한 경우에는 페치 조인(fetch join)을 사용해라!(V3)
 <br>
 <br>
+<br>
 
 #### V2 (Entity를 DTO로 변환)
 쿼리가 총 1 + N + N번 실행된다.(V1과 쿼리수 결과는 같다.)
@@ -55,3 +56,12 @@ Entity를 직접 노출할 때는 양방향 연관관계가 걸린 곳은 꼭 �
 - order -> delivery 지연 로딩 조회 N 번
 - order의 결과가 2개면 최악의 경우 1 + 2 + 2번 실행된다.(member수와 delivery수에 따라 증가한다.)
   - 지연로딩은 영속성 컨텍스트에서 조회하므로, 이미 조회된 경우 쿼리를 생략한다.<br>
+<br>
+<br>
+
+#### V3 (Fetch Join 최적화)
+Entity를 Fetch Join을 사용해서 쿼리 1번에 조회<br>
+Fetch Join으로 order -> member, order -> delivery는 이미 조회 된 상태이므로 지연로딩X<br>
+
+<br>
+<br>
