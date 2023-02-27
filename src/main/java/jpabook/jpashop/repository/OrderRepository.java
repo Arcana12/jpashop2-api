@@ -31,7 +31,7 @@ public class OrderRepository {
         String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
 
-        //주문 상태 검색색
+        //주문 상태 검색
        if (orderSearch.getOrderStatus() != null) {
             if (isFirstCondition) {
                 jpql += " where";
