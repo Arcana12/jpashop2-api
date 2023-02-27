@@ -85,7 +85,20 @@ Entity를 직접 노출할 때는 양방향 연관관계가 걸린 곳은 꼭 �
 
 
 ### 컬렉션 조회 최적화
-#### V1 엔티티 직접 노출
-- orderItem, item 관계를 직접 초기화 하면 hibernate5Module설정에 의해 엔티티를 JSON으로 생성
+#### V1 Entity 직접 노출
+- orderItem, item 관계를 직접 초기화 하면 hibernate5Module설정에 의해 Entity를 JSON으로 생성
 - 양방향 연관관계면 무한 루프에 걸리지 않게 한곳에 @JsonIgnore를 추기해야 한다.
-- 엔티티를 직접 노출하므로 좋은 방법은 아니다.
+- Entity를 직접 노출하므로 좋은 방법은 아니다.
+<br><br><br>
+
+#### V2 Entity를 DTO로 변환
+- 지연로딩으로 많은 SQL 실행
+  - order 1번
+  - member, address n번(order 조회 수 만큼)
+  - orderItem N번(order 조회 수 만큼)
+- item N번(orderItem 조회 수 만큼)
+<br>
+<br>
+:pushpin: 지연 로딩은 영속성 컨텍스트에 있으면 영속성 컨텍스트에 있는 Entity를 사용하고 없으면 SQL을 실행한다. 따라서 같은 영속성 컨텍스트에서 이미 로딩한 회원 Entity를 추가로 조회하면 SQL을 실행하지 않는다.
+<br><br><br>
+
