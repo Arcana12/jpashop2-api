@@ -105,7 +105,8 @@ Entity를 직접 노출할 때는 양방향 연관관계가 걸린 곳은 꼭 �
 #### V3 Fetch Join 최적화
 - Fetch Join으로 SQL이 1번만 실행됨
 - distinct를 사용한 이유는 1대다 조인이 있으므로 데이터 베이스 row가 증가한다. 그 결과 같은 order Entity의 조회 수도 증가하게 된다. JPA의 distinct는 SQL에 distinct를 추가하고, 더해서 같은 Entity가 조회되면, 애플리케이션에서 중복을 걸러준다.
-<br>
+<br><br>
+
 - 단점
   - 페이징이 불가능하다
 <br><br>
