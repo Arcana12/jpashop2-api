@@ -141,3 +141,8 @@ Entity를 직접 노출할 때는 양방향 연관관계가 걸린 곳은 꼭 �
   - ToMany(1:N) 관계는 조인하면 row 수가 증가한다.
 - row 수가 증가하지 않는 ToOne 관계는 Join으로 최적화 하기 쉬으므로 한번에 조회하고, ToMany 관계는 최적화하기 어려우므로 findOrderItems() 같은 별도의 메서드로 조회한다.
 <br><br>
+
+#### V5 컬렉션 조회 최적화
+- Query : 루트 1번, 컬렉션 1번
+- ToOne 관계들을 먼저 조회하고, 여기서 얻은 식별자 orderid로 ToMany관계인 OrderItem을 한꺼번에 조회
+- Map을 사용해서 매칭 성능 향상(O(1))
